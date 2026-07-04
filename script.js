@@ -24,9 +24,42 @@ const baseGrid = { color: COLORS.grid, drawTicks:false };
 const baseScaleLabel = { color:"#706C93", font:{ family:"'IBM Plex Mono', monospace", size:11 } };
 
 /* ---------------- Overview: consumption cost by category ---------------- */
-const categoryLabels = ["البان","بقالة","تعبئة و تغليف","توابل وبهارات","حلويات","صوصات و توابل","كيماويات","مشروبات اولي","مشروبات و مياه","مطبوعات وورقيات","مواد للعملاء","مواد للمطبخ","مواد نظافة"];
-const categoryValues = [290499.7, 63024.5, 1265782.3, 0.0, 48274.7, 0.0, 17.7, 1562413.3, 33175.7, 7415.1, 2627.4, 72405.4, 22720.9];
+const total = 3368356.61586982;
 
+const categoryValues = [
+    290499.7,
+    63024.5,
+    1265782.3,
+    0.0,
+    48274.7,
+    0.0,
+    17.7,
+    1562413.3,
+    33175.7,
+    7415.1,
+    2627.4,
+    72405.4,
+    22720.9
+];
+
+const categoryLabels = [
+    "البان",
+    "بقالة",
+    "تعبئة و تغليف",
+    "توابل وبهارات",
+    "حلويات",
+    "صوصات و توابل",
+    "كيماويات",
+    "مشروبات اولي",
+    "مشروبات و مياه",
+    "مطبوعات وورقيات",
+    "مواد للعملاء",
+    "مواد للمطبخ",
+    "مواد نظافة"
+].map((label, index) => {
+    const percentage = ((categoryValues[index] / total) * 100).toFixed(2);
+    return `${label} (${percentage}%)`;
+});
 new Chart(document.getElementById('costByCategory'), {
   type:'bar',
   data:{
